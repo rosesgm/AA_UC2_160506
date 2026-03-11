@@ -13,15 +13,24 @@ public class AnalisisAlgoritmos {
     /**
      * @param args the command line arguments
      */
+    //Arreglo para burbuja
     public static void main(String[] args) {
         int [] arr = {12, 25 ,13, 67, 9, 2};//1
         Ordenamientos.burbuja(arr);
-         System.out.println("Resultado:");
+         System.out.println("Resultado Ordenamiento burbuja:");
 
         for (int num : arr) {
             System.out.print(num + " ");
     }
-    
+        
+         System.out.println();
+        //Arreglo para selección
+        int[] arr2={12, 25, 13, 67, 9, 2};
+        Ordenamientos.seleccion(arr2);
+        System.out.println("Resultado Ordenamiento por selección: ");
+        for (int num : arr2){
+            System.out.print(num + " ");
+    }
 }
  
 }

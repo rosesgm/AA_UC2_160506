@@ -48,19 +48,19 @@ public class Ordenamientos {
         }
     }
 
-    public static void insertionSort(int[] arr){
-       int n = arr.length;
+    public static void insertionSort(int[] arr){//o(n^2)
+       int n = arr.length;  //O(1) Obtiene el tamaño del arreglo.
        
-       for (int i = 1; i < n; ++i){
-           int key= arr[i];
-           int j = i-1;
-           
-           while(j >= 0 && arr[j] > key){
-               arr[j + 1]=arr[j];
-               j = j - 1;
+       for (int i = 1; i < n; ++i){ //O(n) Recorre el arreglo desde el 2do elemento
+           int key= arr[i];//O(1) Guarda el valor actual a insertar
+           int j = i-1;//O(1) Ìndice del elenemto anterior
+           //Desplaza a la derecha los elementos > que key para hacer espacio e insertar key en la posc. correcta.
+           while(j >= 0 && arr[j] > key){ //o(n) 
+               arr[j + 1]=arr[j];//o(1) mueve el elemento una posicion a la derecha
+               j = j - 1;//o(1) retrocede al elemento anterior
                
            }
-           arr[j +1 ] = key;
+           arr[j +1 ] = key;// o(1) inserta el valor guardado en la posición correcta
            
        }
     

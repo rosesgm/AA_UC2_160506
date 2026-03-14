@@ -31,6 +31,15 @@ public class AnalisisAlgoritmos {
         for (int num : arr2){
             System.out.print(num + " ");
     }
-}
+        System.out.println();
+        //Arreglo para insertionSort
+    int[ ] arr3 ={10, 4, 24, 3, 8, 12};
+       Ordenamientos.insertionSort(arr3);
+        System.out.println("Resultado Ordenamiento Insertion Sort: ");
+        for (int num : arr3){
+            System.out.print(num + " ");
+        }
+       
+}       
  
 }

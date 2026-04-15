@@ -65,6 +65,58 @@ public class Ordenamientos {
        }
     
     }
+   public static void mergeSort(int[] arr){
+    if (arr.length <= 1) {// verifica si el arreglo tiene 1 elemento o menos; si es asi ya está ordendo termina la recursión
+        return;
+    }
+
+    int mitad = arr.length / 2; //divide el arreglo en 2 partes.
+
+    int[] izquierda = new int[mitad];// crea un arreglo izquierdo
+    int[] derecha = new int[arr.length - mitad];// Crea un arreglo derecho 
+
+    for (int i = 0; i < mitad; i++) {//llena el arreglo izquierdo
+        izquierda[i] = arr[i];//Copia el elemento actual del arreglo original al arreglo izquierdo
+    }
+
+    for (int i = mitad; i < arr.length; i++) {//Recorre desde la mitad hasta el final para copiar la parte derecha
+        derecha[i - mitad] = arr[i];////Copia el elemento actual del arreglo original al arreglo i derecho
+    }
+
+    mergeSort(izquierda);//Ordena recursivamente la mitad izquierda
+    mergeSort(derecha);//Ordena recursivamente la mitad derecha
+
+    merge(arr, izquierda, derecha);//Las dos mitades ya fueron ordenadas. Ahora se combinan en el arreglo original
+}
+
+public static void merge(int[] arr, int[] izquierda, int[] derecha){
+    int i = 0;// indice para recorrer arreglo izquierdo
+    int j = 0;//indice para recorer el arreglo derecho
+    int k = 0;//indice para colocar elementos en el arreglo principal
+
+    while (i < izquierda.length && j < derecha.length) {// Sigue mientras ambos arreglos tengan elementos disponibles
+        if (izquierda[i] <= derecha[j]) {// compara cuál eleento es menor
+            arr[k] = izquierda[i];// guarda el elemento menor en el arreglo principal
+            i++;// avanza en el arreglo izquierdo
+        } else {//guarda el elemento derecho si es menor
+            arr[k] = derecha[j];
+            j++;//avanza en el arreglo derecho
+        }
+        k++; //Avanza posición del arreglo principal
+    }
+
+    while (i < izquierda.length) {//mientras queden elementos en izquierda
+        arr[k] = izquierda[i];//copia el elemento restante
+        i++;//Avanza a la izquierda
+        k++;//avanza el arreglo principal
+    }
+
+    while (j < derecha.length) {//mientras queden elementos en derecha
+        arr[k] = derecha[j];//copia el elemtneo restante
+        j++;//avanza derecha
+        k++;//avanza el arreglo principal
+    }
+}
     }
 
 

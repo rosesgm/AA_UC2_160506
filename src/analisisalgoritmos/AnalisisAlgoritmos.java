@@ -39,7 +39,15 @@ public class AnalisisAlgoritmos {
         for (int num : arr3){
             System.out.print(num + " ");
         }
+        //ordenamiento merge
+           int[] arr4 = {12, 25, 13, 67, 9, 2};
+    Ordenamientos.mergeSort(arr4);
+    System.out.println("Resultado Ordenamiento Merge Sort: ");
+    for (int num : arr4){
+        System.out.print(num + " ");
+    }
+    System.out.println();
        
 }       
- 
+     
 }

@@ -47,7 +47,36 @@ public class AnalisisAlgoritmos {
         System.out.print(num + " ");
     }
     System.out.println();
-       
-}       
+      
+    System.out.println("\n\n===== ÁRBOL DE BÚSQUEDA BINARIA BST =====");
+
+int[] valoresBST = {50, 30, 70, 20, 40, 60, 80};
+
+for (int valor : valoresBST) {
+    Ordenamientos.insertarBST(valor);
+}
+
+System.out.println("Recorrido inorden antes de eliminar:");
+Ordenamientos.recorridoInordenBST();
+
+System.out.println("\nEliminando el nodo 50...");
+Ordenamientos.eliminarBST(50);
+
+System.out.println("Recorrido inorden después de eliminar:");
+Ordenamientos.recorridoInordenBST();
+
+System.out.println("\nBúsquedas:");
+imprimirBusquedaBST(30);
+imprimirBusquedaBST(50);
+imprimirBusquedaBST(60);
+
+}     
+    
+    public static void imprimirBusquedaBST(int valor) {
+        if (Ordenamientos.buscarBST(valor)) {
+            System.out.println("El valor " + valor + " fue encontrado.");
+        } else {
+            System.out.println("El valor " + valor + " no fue encontrado.");
+        }}
      
 }

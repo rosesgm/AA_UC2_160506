@@ -70,6 +70,7 @@ public class Ordenamientos {
         return;
     }
 
+
     int mitad = arr.length / 2; //divide el arreglo en 2 partes.
 
     int[] izquierda = new int[mitad];// crea un arreglo izquierdo
@@ -117,7 +118,131 @@ public static void merge(int[] arr, int[] izquierda, int[] derecha){
         k++;//avanza el arreglo principal
     }
 }
+    
+    
+// ====== ÁRBOL DE BÚSQUEDA BINARIA BST ======
+
+static class NodoBST {
+    int valor;
+    NodoBST izquierdo;
+    NodoBST derecho;
+
+    NodoBST(int valor) {
+        this.valor = valor;
     }
+}
+
+static NodoBST raizBST;
+
+// Inserta un valor en el árbol BST
+public static void insertarBST(int valor) {
+    raizBST = insertarBSTRecursivo(raizBST, valor);
+}
+
+private static NodoBST insertarBSTRecursivo(NodoBST actual, int valor) {
+    if (actual == null) {
+        return new NodoBST(valor);
+    }
+
+    if (valor < actual.valor) {
+        actual.izquierdo = insertarBSTRecursivo(actual.izquierdo, valor);
+    } else if (valor > actual.valor) {
+        actual.derecho = insertarBSTRecursivo(actual.derecho, valor);
+    }
+
+    return actual;
+}
+
+// Busca un valor dentro del árbol BST
+public static boolean buscarBST(int valor) {
+    return buscarBSTRecursivo(raizBST, valor);
+}
+
+private static boolean buscarBSTRecursivo(NodoBST actual, int valor) {
+    if (actual == null) {
+        return false;
+    }
+
+    if (valor == actual.valor) {
+        return true;
+    }
+
+    if (valor < actual.valor) {
+        return buscarBSTRecursivo(actual.izquierdo, valor);
+    } else {
+        return buscarBSTRecursivo(actual.derecho, valor);
+    }
+}
+
+// Elimina un valor del árbol BST
+public static void eliminarBST(int valor) {
+    raizBST = eliminarBSTRecursivo(raizBST, valor);
+}
+
+private static NodoBST eliminarBSTRecursivo(NodoBST actual, int valor) {
+    if (actual == null) {
+        return null;
+    }
+
+    if (valor < actual.valor) {
+        actual.izquierdo = eliminarBSTRecursivo(actual.izquierdo, valor);
+    } else if (valor > actual.valor) {
+        actual.derecho = eliminarBSTRecursivo(actual.derecho, valor);
+    } else {
+
+        // Caso 1: el nodo no tiene hijos
+        if (actual.izquierdo == null && actual.derecho == null) {
+            return null;
+        }
+
+        // Caso 2: el nodo tiene un solo hijo
+        if (actual.izquierdo == null) {
+            return actual.derecho;
+        }
+
+        if (actual.derecho == null) {
+            return actual.izquierdo;
+        }
+
+        // Caso 3: el nodo tiene dos hijos
+        // Se usa el sucesor inorden: el menor valor del subárbol derecho
+        int sucesor = encontrarMinimo(actual.derecho);
+        actual.valor = sucesor;
+        actual.derecho = eliminarBSTRecursivo(actual.derecho, sucesor);
+    }
+
+    return actual;
+}
+
+// Encuentra el valor más pequeño del subárbol derecho
+private static int encontrarMinimo(NodoBST actual) {
+    while (actual.izquierdo != null) {
+        actual = actual.izquierdo;
+    }
+
+    return actual.valor;
+}
+
+// Imprime el recorrido inorden del BST
+public static void recorridoInordenBST() {
+    recorridoInordenBSTRecursivo(raizBST);
+    System.out.println();
+}
+
+private static void recorridoInordenBSTRecursivo(NodoBST actual) {
+    if (actual != null) {
+        recorridoInordenBSTRecursivo(actual.izquierdo);
+        System.out.print(actual.valor + " ");
+        recorridoInordenBSTRecursivo(actual.derecho);
+    }
+}
+
+    }
+
+    
+        
+    
+   
 
 
 
